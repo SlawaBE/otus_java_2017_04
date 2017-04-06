@@ -22,7 +22,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <net.sf.opencsv.version>2.3</net.sf.opencsv.version>
-        <proguard-base.version>5.3.2</proguard-base.version>
+        <proguard-base.version>5.3.3</proguard-base.version>
     </properties>
 
     <build>
