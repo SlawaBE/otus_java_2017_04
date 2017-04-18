@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>2017-04-01-hw-2</name>
+    <name>2017-04-01-hw-3</name>
     <description>Homework for lesson 2.1</description>
 
     <developers>
@@ -39,7 +39,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.hw_2.ObjectMeter</mainClass>
+                            <mainClass>ru.otus.hw_3.MyArrayListDemo</mainClass>
                         </manifest>
                     </archive>
                     <finalName>${project.name}</finalName>
