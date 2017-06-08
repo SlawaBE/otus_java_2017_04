@@ -37,7 +37,7 @@ public class DBService {
             StringBuilder url = new StringBuilder();
 
             url.append("jdbc:mysql://")
-                    .append("10.1.1.1:")
+                    .append("localhost:")
                     .append("3306/")
                     .append("db_stas?")
                     .append("user=stas&")
