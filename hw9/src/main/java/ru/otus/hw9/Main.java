@@ -1,6 +1,6 @@
 package ru.otus.hw9;
 
-import ru.otus.hw9.dataset.User;
+import ru.otus.hw9.dataset.UserDataSet;
 import ru.otus.hw9.exception.DBException;
 import ru.otus.hw9.service.DBService;
 
@@ -41,9 +41,9 @@ public class Main {
     private static void insertData() {
         System.out.println("\nВыполняется вставка данных");
         try {
-            dbService.save(new User(1, "first", 10));
-            dbService.save(new User(2, "second", 8));
-            dbService.save(new User(3, "third", 6));
+            dbService.save(new UserDataSet("first", 10));
+            dbService.save(new UserDataSet("second", 8));
+            dbService.save(new UserDataSet("third", 6));
         } catch (DBException e) {
             System.out.println("Не удалось выполнить вставку данных");
         }

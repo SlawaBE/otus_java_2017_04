@@ -1,7 +1,7 @@
 package ru.otus.hw9.service;
 
 
-import ru.otus.hw9.dataset.User;
+import ru.otus.hw9.dataset.UserDataSet;
 import ru.otus.hw9.exception.DBException;
 import ru.otus.hw9.executor.DBExecutor;
 import ru.otus.hw9.executor.SimpleExecutor;
@@ -58,33 +58,33 @@ public class DBService {
         exec.execCommand("insert into users (name, age) values ('" + name + "'," + age + ");");
     }
 
-    public User getUser(long id) throws SQLException {
+    public UserDataSet getUser(long id) throws SQLException {
         SimpleExecutor exec = new SimpleExecutor(connection);
         return exec.execQuery("select * from users where id = " + id, result -> {
             result.next();
-            return new User(result.getLong(1), result.getString(2), result.getInt(3));
+            return new UserDataSet(result.getLong(1), result.getString(2), result.getInt(3));
         });
     }
 
-    public List<User> getAllUsers() throws SQLException {
+    public List<UserDataSet> getAllUsers() throws SQLException {
         SimpleExecutor exec = new SimpleExecutor(connection);
         return exec.execQuery("select * from users;", result -> {
-            List<User> users = new ArrayList<>();
+            List<UserDataSet> users = new ArrayList<>();
             while (result.next()) {
-                users.add(new User(result.getLong(1), result.getString(2), result.getInt(3)));
+                users.add(new UserDataSet(result.getLong(1), result.getString(2), result.getInt(3)));
             }
             return users;
         });
     }
 
-    public void save(User user) throws DBException {
-        DBExecutor<User> exec = new DBExecutor<>(connection);
+    public void save(UserDataSet user) throws DBException {
+        DBExecutor<UserDataSet> exec = new DBExecutor<>(connection);
         exec.save(user);
     }
 
-    public User load(long id) throws DBException {
-        DBExecutor<User> exec = new DBExecutor<>(connection);
-        return exec.load(id, User.class);
+    public UserDataSet load(long id) throws DBException {
+        DBExecutor<UserDataSet> exec = new DBExecutor<>(connection);
+        return exec.load(id, UserDataSet.class);
     }
 
     public void cleanUp() throws DBException {

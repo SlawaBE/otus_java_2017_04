@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserDataSet {
 
     @Id
     @Column(name = "id")
@@ -17,16 +17,16 @@ public class User {
     @Column(name = "age", nullable = false, length = 3)
     private int age;
 
-    public User() {
+    public UserDataSet() {
     }
 
-    public User(String name, int age) {
+    public UserDataSet(String name, int age) {
         this.id = -1;
         this.name = name;
         this.age = age;
     }
 
-    public User(long id, String name, int age) {
+    public UserDataSet(long id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -58,6 +58,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User:{id = " + id + ", name = " + name + ", age = " + age+ "}";
+        return "UserDataSet:{id = " + id + ", name = " + name + ", age = " + age+ "}";
     }
 }

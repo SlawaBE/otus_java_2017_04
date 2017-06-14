@@ -5,6 +5,7 @@ import ru.otus.hw9.exception.DBException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -41,6 +42,7 @@ public class DBExecutor<T> {
         Class clazz = dataSet.getClass();
 
         List<Field> columns = getColumnFields(clazz);
+        deleteIdColumn(columns);
         StringBuilder sb = new StringBuilder();
         sb.append("(");
         for (int i = 0; i < columns.size(); i++) {
@@ -88,6 +90,15 @@ public class DBExecutor<T> {
             }
         }
         return columns;
+    }
+
+    private void deleteIdColumn(List<Field> columns) {
+        for (Field field : columns) {
+            if (field.isAnnotationPresent(Id.class)) {
+                columns.remove(field);
+                break;
+            }
+        }
     }
 
     public T load(long id, Class<T> clazz) throws DBException {
