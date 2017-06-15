@@ -1,7 +1,7 @@
 package ru.otus.hw9.exception;
 
 
-public class DBException extends Exception {
+public class DBException extends RuntimeException {
 
     public DBException(Throwable cause) {
         super(cause);

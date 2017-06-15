@@ -10,7 +10,6 @@ import ru.otus.hw10.dao.UsersDAO;
 import ru.otus.hw10.dataset.AddressDataSet;
 import ru.otus.hw10.dataset.PhoneDataSet;
 import ru.otus.hw10.dataset.UserDataSet;
-import ru.otus.hw10.exception.DBException;
 
 
 /**

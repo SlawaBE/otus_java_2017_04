@@ -7,10 +7,10 @@ import ru.otus.hw10.dataset.UserDataSet;
  */
 public interface DBService {
 
-    public void save(UserDataSet user);
+    void save(UserDataSet user);
 
-    public UserDataSet load(long id);
+    UserDataSet load(long id);
 
-    public void shutdown();
+    void shutdown();
 
 }

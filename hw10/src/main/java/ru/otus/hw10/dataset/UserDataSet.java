@@ -1,7 +1,6 @@
 package ru.otus.hw10.dataset;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 /**

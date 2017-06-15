@@ -1,7 +1,6 @@
 package ru.otus.hw9.executor;
 
 
-import ru.otus.hw9.handler.ResultHandler;
 import ru.otus.hw9.handler.TResultHandler;
 
 import java.sql.Connection;

@@ -3,6 +3,7 @@ package ru.otus.hw9;
 import ru.otus.hw9.dataset.UserDataSet;
 import ru.otus.hw9.exception.DBException;
 import ru.otus.hw9.service.DBService;
+import ru.otus.hw9.service.DBServiceImpl;
 
 public class Main {
 
@@ -28,9 +29,8 @@ public class Main {
     private static void init() {
         try {
             System.out.println("Подключение к базе");
-            dbService = new DBService();
+            dbService = new DBServiceImpl();
             System.out.println("Создание таблицы users");
-            dbService.init();
         } catch (DBException e) {
             System.out.println("Сбой инициализации");
             e.printStackTrace();
@@ -63,7 +63,8 @@ public class Main {
     private static void cleanUp(){
         try {
             System.out.println("\nВыполняется очистка");
-            dbService.cleanUp();
+            ((DBServiceImpl) dbService).cleanUp();
+            dbService.shutdown();
         } catch (DBException e) {
             System.out.println("Не удалось выполнить очистку");
             e.printStackTrace();
