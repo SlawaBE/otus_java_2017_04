@@ -27,12 +27,6 @@ public class PhoneDataSet extends DataSet {
         this.code = code;
     }
 
-    public PhoneDataSet(Long id, String number, int code) {
-        super(id);
-        this.number = number;
-        this.code = code;
-    }
-
     public String getNumber() {
         return number;
     }

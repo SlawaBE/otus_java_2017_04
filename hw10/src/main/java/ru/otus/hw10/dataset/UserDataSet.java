@@ -23,13 +23,6 @@ public class UserDataSet extends DataSet {
     public UserDataSet() {
     }
 
-    public UserDataSet(Long id, String name, Set<PhoneDataSet> phones, AddressDataSet address) {
-        super(id);
-        this.name = name;
-        this.phones = phones;
-        this.address = address;
-    }
-
     public UserDataSet(String name, Set<PhoneDataSet> phones, AddressDataSet address) {
         this.name = name;
         this.phones = phones;
