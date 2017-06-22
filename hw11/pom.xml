@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.otus</groupId>
-    <artifactId>2017-04-01</artifactId>
+    <artifactId>hw11</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>2017-04-01-hw-8</name>
-    <description>Homework for lesson 8.1</description>
+    <name>2017-04-01-hw-11</name>
+    <description>Homework for lesson 11.1</description>
 
     <developers>
         <developer>
@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.hw8.ru.otus.hw11.Main</mainClass>
+                            <mainClass>ru.otus.hw11.Main</mainClass>
                         </manifest>
                     </archive>
                     <finalName>${project.name}</finalName>
@@ -46,14 +46,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.0</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
+
 </project>
