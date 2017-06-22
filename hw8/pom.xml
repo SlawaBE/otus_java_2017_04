@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.hw8.ru.otus.hw11.Main</mainClass>
+                            <mainClass>ru.otus.hw8.Main</mainClass>
                         </manifest>
                     </archive>
                     <finalName>${project.name}</finalName>
