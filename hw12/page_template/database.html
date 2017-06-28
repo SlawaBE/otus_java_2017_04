@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Database</title>
+</head>
+<body>
+<a href="login">Login</a> <a href="db">Database</a> <a href="admin">Admin</a>
+<div class="write">
+    Create record in database
+    <form action="/db" method="POST">
+        Name: <input type="text" name="name"/>
+        Age: <input type="text" name="age"/>
+        <input type="submit" value="Write">
+    </form>
+</div>
+<p/>
+<div class="read">
+    Get record from database by ID
+    <form action="/db" method="GET">
+        ID: <input type="number" name="id">
+        <input type="submit" value="Read">
+    </form>
+</div>
+<p>Result: ${result}</p>
+</body>
+</html>
