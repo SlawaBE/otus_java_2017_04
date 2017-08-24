@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="dbService" class="ru.otus.hw15.db.DBServiceImpl">
+        <constructor-arg ref="messageSystemContext"/>
+        <constructor-arg ref="myCache"/>
+    </bean>
+
+    <bean id="myCache" class="ru.otus.hw15.db.MyCacheImpl">
+        <constructor-arg name="maxElements" value="10"/>
+        <constructor-arg name="lifeTimeMs" value="10000"/>
+        <constructor-arg name="idleTimeMs" value="10000"/>
+    </bean>
+
+    <bean id="authService" class="ru.otus.hw15.frontend.auth.AuthorizationService"/>
+
+    <bean id="messageSystem" class="ru.otus.hw15.messageSystem.MessageSystem"/>
+
+    <bean id="messageSystemContext" class="ru.otus.hw15.messageSystem.MessageSystemContext">
+        <constructor-arg ref="messageSystem"/>
+        <constructor-arg value="dbService"/>
+    </bean>
+
+    <context:annotation-config />
+
+</beans>
