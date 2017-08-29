@@ -26,7 +26,7 @@ public class CounterTest {
     }
 
     @Test
-    public void incrementTest() throws NoSuchFieldException, IllegalAccessException {
+    public void testIncrement() throws NoSuchFieldException, IllegalAccessException {
         counter.increment();
         Field field = counter.getClass().getDeclaredField("count");
         field.setAccessible(true);
@@ -35,7 +35,7 @@ public class CounterTest {
     }
 
     @Test
-    public void getCountTest() throws NoSuchFieldException, IllegalAccessException {
+    public void testGetCount() throws NoSuchFieldException, IllegalAccessException {
         Field field = counter.getClass().getDeclaredField("count");
         field.setAccessible(true);
         int value = field.getInt(counter);

@@ -20,6 +20,12 @@ public class Assert {
         }
     }
 
+    public static void assertNull(Object actual) {
+        if (actual != null) {
+            throw new AssertException("your value is not null, but null expected");
+        }
+    }
+
     public static void assertFail() {
         throw new AssertException("this is fail");
     }

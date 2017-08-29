@@ -14,19 +14,23 @@ import java.util.Arrays;
 
 public class Suite {
 
-    Class[] classes;
+    private Class[] classes;
 
     public Suite(Class... classes) {
         this.classes = classes;
     }
 
     public void run() {
+        System.out.println("========================\nMy Test Framework\n========================");
         for (Class clazz : classes) {
             runTests(clazz);
         }
     }
 
     private void runTests(Class clazz) {
+        System.out.println("Test suite: " + clazz.getName());
+        Statistics statistics = new Statistics();
+
         Object[] before = Arrays.stream(clazz.getMethods())
                 .filter(method -> method.isAnnotationPresent(Before.class)).toArray();
         Object[] methods = Arrays.stream(clazz.getMethods())
@@ -41,17 +45,23 @@ public class Suite {
             executeAll(before, obj);
 
             try {
-
+                statistics.incrementTotal();
+                System.out.print("\tmethod " + method.getName());
                 ReflectionHelper.callMethod(obj, method.getName());
-
+                System.out.println(" SUCCESS");
+                statistics.incrementSuccess();
             } catch (AssertException e) {
-                System.out.println("FAIL");
+                System.out.println(" FAIL");
+                statistics.incrementFail();
             } catch (Exception e) {
                 e.printStackTrace();
+                statistics.incrementFail();
             }
 
-            executeAll(before, obj);
+            executeAll(after, obj);
         }
+
+        printStatistics(statistics);
 
     }
 
@@ -59,9 +69,21 @@ public class Suite {
         if (methods != null) {
             for (Object o : methods) {
                 Method method = (Method) o;
-                ReflectionHelper.callMethod(obj, method.getName());
+                try {
+                    ReflectionHelper.callMethod(obj, method.getName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
+    }
+
+    private void printStatistics(Statistics statistics) {
+        System.out.println("\nTotal: " + statistics.getTotal()
+                + ", Success: " + statistics.getSuccess()
+                + ", Fail: " + statistics.getFail());
+        System.out.println();
+
     }
 
 }
