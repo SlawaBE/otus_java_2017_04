@@ -26,9 +26,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.sf.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>${net.sf.opencsv.version}</version>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
         </dependency>
     </dependencies>
 

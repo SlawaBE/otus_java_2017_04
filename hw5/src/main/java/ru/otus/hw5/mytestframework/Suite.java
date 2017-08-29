@@ -4,6 +4,12 @@ package ru.otus.hw5.mytestframework;
     Created by Stanislav on 10.05.2017
 */
 
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 import ru.otus.hw5.mytestframework.annotations.After;
 import ru.otus.hw5.mytestframework.annotations.Before;
 import ru.otus.hw5.mytestframework.annotations.Test;
@@ -11,6 +17,9 @@ import ru.otus.hw5.mytestframework.asserts.AssertException;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class Suite {
 
@@ -18,6 +27,20 @@ public class Suite {
 
     public Suite(Class... classes) {
         this.classes = classes;
+    }
+
+    public Suite(String packageName) {
+        List<ClassLoader> classLoadersList = new LinkedList<ClassLoader>();
+        classLoadersList.add(ClasspathHelper.contextClassLoader());
+        classLoadersList.add(ClasspathHelper.staticClassLoader());
+
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .setScanners(new SubTypesScanner(false), new ResourcesScanner())
+                .setUrls(ClasspathHelper.forClassLoader(classLoadersList.toArray(new ClassLoader[0])))
+                .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(packageName))));
+
+        Set<Class<?>> classes = reflections.getSubTypesOf(Object.class);
+        this.classes = classes.toArray(new Class[classes.size()]);
     }
 
     public void run() {

@@ -13,6 +13,9 @@ public class Main {
     public static void main(String[] args) {
         Suite suite = new Suite(CounterTest.class, MyStrangeClassTest.class);
         suite.run();
+
+        Suite packageSuite = new Suite("ru.otus.hw5.tests");
+        packageSuite.run();
     }
 
 }
