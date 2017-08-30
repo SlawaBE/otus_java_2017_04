@@ -29,6 +29,8 @@ public class Suite {
         this.classes = classes;
     }
 
+    public Statistics suiteStatistics = new Statistics();
+
     public Suite(String packageName) {
         List<ClassLoader> classLoadersList = new LinkedList<ClassLoader>();
         classLoadersList.add(ClasspathHelper.contextClassLoader());
@@ -48,6 +50,11 @@ public class Suite {
         for (Class clazz : classes) {
             runTests(clazz);
         }
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("\nRunning test suite total: " + suiteStatistics.getTotal());
+        System.out.println("\tfail: " + suiteStatistics.getFail());
+        System.out.println("\tsuccess: " + suiteStatistics.getSuccess());
+        System.out.println();
     }
 
     private void runTests(Class clazz) {
@@ -75,6 +82,7 @@ public class Suite {
                 statistics.incrementSuccess();
             } catch (AssertException e) {
                 System.out.println(" FAIL");
+                e.printStackTrace();
                 statistics.incrementFail();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -85,6 +93,12 @@ public class Suite {
         }
 
         printStatistics(statistics);
+        if (statistics.getFail() == 0) {
+            suiteStatistics.incrementSuccess();
+        } else {
+            suiteStatistics.incrementFail();
+        }
+        suiteStatistics.incrementTotal();
 
     }
 
